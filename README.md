@@ -24,3 +24,38 @@
 *  - sudo lsof -i:8080
 * 리눅스 실행중인 PID:145601 서비스를 종료하는 명령어
 *  - sudo kill -9 145601
+
+
+* Docker : 서버 배포
+* Client : docker pull , docker build , docker run , docker push
+* Docker_Host : docker daemon(Containers , images)
+* Registry : application image
+
+* Dockerfile : 요리 레시피
+* Build : 조리
+* Docker Image : 조리된 음식
+* Run : 서빙
+* Docker Container : 서빙된 음식
+
+* Dockerfile(레시피)을 Docker Engine(요리사)이 Docker Build 명령어를 통해
+* Docker Image(조리된 요리)를 만들고 Docker Push 명령어를 통해
+* Docker Hub(메뉴판)에 올리고 Docker Pull 명령어를 통해
+* EC2에 올리고 Docker Run 명령어를 통해
+* Docker Container(서빙된 요리)를 사용자가 사용할 수 있게 만든다.
+
+* Docker 사용 이유 : 어느 OS든 어느 환경에서든 빠르게 사용이 가능하다. 공통된 dockerfile을 사용하기 때문에.
+
+* Dockerfile은 프로젝트에서 Dockerfile 로 만들면 됨.
+  # 사용할 재료
+  FROM openjdk:latest  # openjdk 최신버전을 사용하겠다.
+  
+  # 재료를 저장할 위치
+  COPY build/libs/neo-0.0.1-SNAPSHOT.jar /app/app.jar  # build한 jar파일을 도커 파일(/app/app.jar)에 저장을 하겠다.
+  
+  # 재료를 통해 요리를 할 레시피
+  ENTRYPOINT ["java", "-jar", "/app/app.jar"]  # java소스로 된 /app/app.jar로 되있는 .jar파일을 실행을 할 것이다.
+
+* Docker Desktop이 실행중이고, Docker engine이 돌아가고 있어야함.
+* 도커 빌드 : docker build -t {본인도커허브ID}/{프로젝트이름} .
+* 도커 푸시 : docker push {본인도커허브ID}/{푸쉬할프로젝트이름}
+
